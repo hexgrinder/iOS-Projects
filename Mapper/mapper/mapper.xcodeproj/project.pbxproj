@@ -17,7 +17,7 @@
 		9C6EF4BB1A379109005242B3 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6EF4B61A379109005242B3 /* MapViewController.swift */; };
 		9C6EF4BC1A379109005242B3 /* MyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6EF4B71A379109005242B3 /* MyTableViewCell.swift */; };
 		9C6EF4BD1A379109005242B3 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6EF4B81A379109005242B3 /* Place.swift */; };
-		9C6EF4C01A37913D005242B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C6EF4BF1A37913D005242B3 /* Main.storyboard */; };
+		9C6EF4C31A379267005242B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C6EF4C11A379267005242B3 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,7 +44,7 @@
 		9C6EF4B61A379109005242B3 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		9C6EF4B71A379109005242B3 /* MyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTableViewCell.swift; sourceTree = "<group>"; };
 		9C6EF4B81A379109005242B3 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
-		9C6EF4BF1A37913D005242B3 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		9C6EF4C21A379267005242B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = mapper/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,7 +91,7 @@
 				9C6EF4B61A379109005242B3 /* MapViewController.swift */,
 				9C6EF4B71A379109005242B3 /* MyTableViewCell.swift */,
 				9C6EF4921A3790BD005242B3 /* AppDelegate.swift */,
-				9C6EF4BF1A37913D005242B3 /* Main.storyboard */,
+				9C6EF4C11A379267005242B3 /* Main.storyboard */,
 				9C6EF4991A3790BD005242B3 /* Images.xcassets */,
 				9C6EF49B1A3790BD005242B3 /* LaunchScreen.xib */,
 				9C6EF4901A3790BD005242B3 /* Supporting Files */,
@@ -216,7 +216,7 @@
 				9C6EF49D1A3790BD005242B3 /* LaunchScreen.xib in Resources */,
 				9C6EF49A1A3790BD005242B3 /* Images.xcassets in Resources */,
 				9C6EF4B31A3790E4005242B3 /* Info.plist in Resources */,
-				9C6EF4C01A37913D005242B3 /* Main.storyboard in Resources */,
+				9C6EF4C31A379267005242B3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,6 +268,15 @@
 				9C6EF49C1A3790BD005242B3 /* Base */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		9C6EF4C11A379267005242B3 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9C6EF4C21A379267005242B3 /* Base */,
+			);
+			name = Main.storyboard;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -425,6 +434,7 @@
 				9C6EF4AE1A3790BD005242B3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9C6EF4AF1A3790BD005242B3 /* Build configuration list for PBXNativeTarget "mapperTests" */ = {
 			isa = XCConfigurationList;
@@ -433,6 +443,7 @@
 				9C6EF4B11A3790BD005242B3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
