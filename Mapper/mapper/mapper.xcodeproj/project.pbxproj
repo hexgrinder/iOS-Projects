@@ -18,6 +18,7 @@
 		9C6EF4BC1A379109005242B3 /* MyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6EF4B71A379109005242B3 /* MyTableViewCell.swift */; };
 		9C6EF4BD1A379109005242B3 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6EF4B81A379109005242B3 /* Place.swift */; };
 		9C6EF4C31A379267005242B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C6EF4C11A379267005242B3 /* Main.storyboard */; };
+		9C6EF4C51A3797D0005242B3 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6EF4C41A3797D0005242B3 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		9C6EF4B71A379109005242B3 /* MyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTableViewCell.swift; sourceTree = "<group>"; };
 		9C6EF4B81A379109005242B3 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		9C6EF4C21A379267005242B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = mapper/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9C6EF4C41A3797D0005242B3 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C6EF4C51A3797D0005242B3 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +71,7 @@
 		9C6EF4841A3790BD005242B3 = {
 			isa = PBXGroup;
 			children = (
+				9C6EF4C41A3797D0005242B3 /* MapKit.framework */,
 				9C6EF48F1A3790BD005242B3 /* mapper */,
 				9C6EF4A51A3790BD005242B3 /* mapperTests */,
 				9C6EF48E1A3790BD005242B3 /* Products */,
@@ -182,6 +186,11 @@
 				TargetAttributes = {
 					9C6EF48C1A3790BD005242B3 = {
 						CreatedOnToolsVersion = 6.0.1;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					9C6EF4A11A3790BD005242B3 = {
 						CreatedOnToolsVersion = 6.0.1;
