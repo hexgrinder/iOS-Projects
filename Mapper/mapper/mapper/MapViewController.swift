@@ -20,6 +20,7 @@ UITableViewDataSource
 
     @IBOutlet var mapView:MKMapView!
     @IBOutlet var tableView:UITableView!
+    @IBOutlet var directionsText:UITextView!
     
     private var locMgr_:CLLocationManager!
     private var currentPlacemark:CLPlacemark!
@@ -49,15 +50,18 @@ UITableViewDataSource
     }
     
     private func initDataSource_() {
+        
         dataSrc_ = DataSource<Place>()
-        //dataSrc_.save(Place(name: "Cafe Rouge at the Strand", address: "9 Villiers St London WC2N 6NA United Kingdom"))
-        //dataSrc_.save(Place(name: "Theodore Bullfrog", address: "26 John Adam St London WC2N 6HL, United Kingdom"))
-        //dataSrc_.save(Place(name: "Lupita", address: "13 Villiers St London WC2N 6ND United Kingdom"))
-        //dataSrc_.save(Place(name: "The Ship and Shovell", address: "1-3 Craven Passage London WC2N 5PH United Kingdom"))
-        //dataSrc_.save(Place(name: "The Vaults Restaurant", address: "The RSA 8 John Adam St WC2N 6EZ, United Kingdom"))
-        dataSrc_.save(Place(name: "The Vaults Restaurant", address: "1340 Scott Street San Francisco, CA"))
-        dataSrc_.save(Place(name: "The Vaults Restaurant", address: "1000 Scott Street San Francisco, CA"))
-
+        
+        dataSrc_.save(Place(
+            name: "The Vaults Restaurant",
+            address: "1340 Scott Street San Francisco, CA"))
+        dataSrc_.save(Place(
+            name: "The Safe Restaurant",
+            address: "1000 Scott Street San Francisco, CA"))
+        dataSrc_.save(Place(
+            name: "The Lockbox Restaurant",
+            address: "1200 Scott Street San Francisco, CA"))
     }
     
     private func geocode_(place:Place) {
@@ -134,26 +138,48 @@ UITableViewDataSource
         directionRequest.setSource(origin)
         directionRequest.setDestination(destination)
         
+        // TODO: the following is $$$ and very chatty -> cache results
+        // TODO: asynch UI updates
         var direction : MKDirections = MKDirections(request: directionRequest)
         
         direction.calculateDirectionsWithCompletionHandler({
+            
             (response:MKDirectionsResponse!, routeError:NSError!) -> Void in
-            if (routeError != nil || response.routes.isEmpty) {
+            
+            if (routeError != nil) {
+                println("[ERROR]: \(routeError)")
+                return
+            } else if (response.routes.isEmpty) {
                 return
             } else {
-                let route: MKRoute = response.routes[0] as MKRoute
                 
-                // clear previous route overlays
+                // clear previous route directions & overlays
+                self.directionsText.text.removeAll(keepCapacity: true)
                 if (self.mapView.overlays != nil) {
                     self.mapView.removeOverlays(self.mapView.overlays)
                 }
                 
+                // a long journey begins with a single step...
+                let route: MKRoute = response.routes[0] as MKRoute
+                
+                // new directions... the band
+                for step in route.steps {
+                    self.directionsText.text = NSString(
+                        format: "%@ %@ \r\n\r\n",
+                        self.directionsText.text,
+                        step.instructions)
+                }
+                
+                // new map route
                 self.mapView.addOverlay(route.polyline!)
                 
+                // adjust view
                 var rect : MKMapRect = route.polyline.boundingMapRect as MKMapRect
-                let spanX = 0.05
-                let spanY = 0.05
-                var newRegion = MKCoordinateRegion(center: self.mapView.userLocation.coordinate, span: MKCoordinateSpanMake(spanX, spanY))
+                let spanX = 0.08
+                let spanY = 0.08
+                var newRegion = MKCoordinateRegion(
+                    center: self.mapView.userLocation.coordinate,
+                    span: MKCoordinateSpanMake(spanX, spanY))
                 self.mapView.setRegion(newRegion, animated: true)
             }
         })
@@ -178,7 +204,7 @@ UITableViewDataSource
     
     func locationManager(manager:CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         
-        println("update locs...")
+        //println("update locs...")
         
         CLGeocoder().reverseGeocodeLocation(
             manager.location,
@@ -208,12 +234,10 @@ UITableViewDataSource
         
         var place:Place = dataSrc_.getAtIndex(indexPath.row)
         
-        self.mapView
-            .selectAnnotation(place.annotation, animated: true)
-        
         self.showRoute_(
             MKMapItem.mapItemForCurrentLocation(),
-            destination: MKMapItem(placemark: MKPlacemark(placemark: place.placemark)))
+            destination: MKMapItem(
+                placemark: MKPlacemark(placemark: place.placemark)))
     }
     
     // MARK: - UITableViewDataSource
